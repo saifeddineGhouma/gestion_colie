@@ -44,7 +44,10 @@ return [
             'driver'  => 'session',
             'provider' => 'admins',
           ],
-
+        'transitaire'  => [
+            'driver'  => 'session',
+            'provider' => 'transitaires',
+        ],
         'api' => [
             'driver' => 'token',
             'provider' => 'users',
@@ -77,6 +80,10 @@ return [
         'admins' => [
             'driver' => 'eloquent',
             'model'  =>  App\Models\Admin::class,
+        ],
+        'transitaires'  => [
+            'driver'  => 'eloquent',
+            'model' =>  App\Models\Transitaire::class,
         ],
 
         // 'users' => [

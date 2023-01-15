@@ -1,6 +1,6 @@
 <body>
     <div id="app">
-        @include('part_admin.dashboard.layout.inc.header')
+        @include('part_transitaire.dashboard.layout.inc.header')
         <div id="main"  class='layout-navbar'>
             <header class='mb-3'>
                 <nav class="navbar navbar-expand navbar-light navbar-top">
@@ -68,7 +68,7 @@
                                 <a href="#" data-bs-toggle="dropdown" aria-expanded="false">
                                     <div class="user-menu d-flex">
                                         <div class="user-name text-end me-3">
-                                            <h6 class="mb-0 text-gray-600"> {{auth()->guard('admin')->user()->name}}</h6>
+                                            <h6 class="mb-0 text-gray-600"> {{auth()->guard('transitaire')->user()->nom}}</h6>
                                             <p class="mb-0 text-sm text-gray-600">Administrator</p>
                                         </div>
                                         <div class="user-img d-flex align-items-center">
@@ -80,7 +80,7 @@
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton" style="min-width: 11rem;">
                                     <li>
-                                        <h6 class="dropdown-header">Hello, {{auth()->guard('admin')->user()->name}}</h6>
+                                        <h6 class="dropdown-header">Hello, {{auth()->guard('transitaire')->user()->nom}}</h6>
                                     </li>
                                     <li><a class="dropdown-item" href="#"><i class="icon-mid bi bi-person me-2"></i> My
                                             Profile</a></li>
@@ -101,11 +101,11 @@
             </header>
 <div id="main-content">
             @yield('contenu')
-                
-                @include('part_admin.dashboard.layout.inc.footer')
+
+                @include('part_transitaire.dashboard.layout.inc.footer')
 
             </div>
         </div>
     </div>
-    @include('part_admin.dashboard.layout.javascript')
+    @include('part_transitaire.dashboard.layout.javascript')
 </body>
