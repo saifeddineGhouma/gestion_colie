@@ -1,4 +1,4 @@
-@extends('part_admin.auth.layout.global')
+@extends('part_admin.layout.global')
 @section('contenu')
 <div id="auth">
 
@@ -6,13 +6,19 @@
         <div class="col-lg-8 col-12">
             <div id="auth-left">
 
-                <h1 class="auth-title">Log in. Admin</h1>
+                <h1 class="auth-title">Log in.</h1>
                 <p class="auth-subtitle mb-5">Log in with your data that you entered during registration.</p>
 
                 <form action="{{route('admin.authenticate')}}" method="Post">
                     @csrf
                     <div class="form-group position-relative has-icon-left mb-4">
                         <input type="text" class="form-control form-control-xl"
+                         placeholder="name" name="name">
+                        <div class="form-control-icon">
+                            <i class="bi bi-person"></i>
+                        </div>
+                    <div class="form-group position-relative has-icon-left mb-4">
+                        <input type="email" class="form-control form-control-xl"
                          placeholder="Username" name="email">
                         <div class="form-control-icon">
                             <i class="bi bi-person"></i>
@@ -21,6 +27,12 @@
                     <div class="form-group position-relative has-icon-left mb-4">
                         <input type="password" class="form-control form-control-xl"
                         placeholder="Password" name="password">
+                        <div class="form-control-icon">
+                            <i class="bi bi-shield-lock"></i>
+                        </div>
+                    </div>
+                    <div class="form-group position-relative has-icon-left mb-4">
+                        <input type="password" class="form-control form-control-xl" placeholder="Confirm Password">
                         <div class="form-control-icon">
                             <i class="bi bi-shield-lock"></i>
                         </div>

@@ -6,10 +6,10 @@
         <div class="col-lg-8 col-12">
             <div id="auth-left">
 
-                <h1 class="auth-title">Log in. Admin</h1>
+                <h1 class="auth-title">Log in. Transitaire</h1>
                 <p class="auth-subtitle mb-5">Log in with your data that you entered during registration.</p>
 
-                <form action="{{route('admin.authenticate')}}" method="Post">
+                <form action="{{route('transitaire.authenticate')}}" method="Post">
                     @csrf
                     <div class="form-group position-relative has-icon-left mb-4">
                         <input type="text" class="form-control form-control-xl"
