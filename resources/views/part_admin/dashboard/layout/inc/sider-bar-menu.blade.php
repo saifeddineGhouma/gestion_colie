@@ -28,7 +28,18 @@
             </ul>
         </li>
 
-
+        <li
+        class="sidebar-item  has-sub">
+        <a href="#" class='sidebar-link'>
+            <i class="bi bi-stack"></i>
+            <span>Offer</span>
+        </a>
+        <ul class="submenu ">
+            <li class="submenu-item ">
+                <a href="{{route('admin.offer.index')}}">liste Offer</a>
+            </li>
+        </ul>
+    </li>
 
     </ul>
 </div>

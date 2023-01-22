@@ -26,5 +26,6 @@ Route::group([
     'middleware'=>'transitaire'
     ], function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/search', [DashboardController::class, 'searchOffer'])->name('search.offer');
    // Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 });
