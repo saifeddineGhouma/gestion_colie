@@ -1,4 +1,4 @@
-@extends('part_admin.dashboard.layout.global')
+@extends('part_transitaire.dashboard.layout.global')
 @section('contenu')
     <div class="page-heading">
         <div class="page-title">
@@ -24,11 +24,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4 class="card-title">
-                                <a href="{{route('admin.offer.create')}}" class="btn btn-info">
-                                Ajoute offer
-                                </a>
-                            </h4>
+
                         </div>
                         <div class="card-content">
                             <div class="card-body">
@@ -57,12 +53,11 @@
                                             <td>{{$offer->id}}</td>
                                             <td>{{$offer->num_vol}}</td>
                                             <td>{{$offer->company_air->nom}}</td>
-                                            
+                                           @if(!$offer->isReserved(auth()->guard('transitaire')->user()->id))
                                             <td>
-                                                <button class="btn btn-danger">Reserve</button>
-
-
+                                                <a href="{{route('transitaire.reserve.offer',$offer->id)}}" class="btn btn-danger">Reserve</a>
                                             </td>
+                                            @endif
 
                                         </tr>
                                     @endforeach

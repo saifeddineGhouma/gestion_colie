@@ -13,4 +13,9 @@ class Offer extends Model
     {
         return $this->belongsTo(CompanyAir::class);
     }
+
+    public function isReserved($transitaire_id){
+        return Reservation::where('transitaire_id', $transitaire_id)->where('offer_id', $this->id)->exists();
+
+    }
 }

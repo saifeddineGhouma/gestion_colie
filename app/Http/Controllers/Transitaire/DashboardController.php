@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Transitaire;
 
 use App\Http\Controllers\Controller;
 use App\Models\Offer;
+use App\Models\Reservation;
 use Exception;
 use Illuminate\Http\Request;
 
@@ -37,32 +38,35 @@ class DashboardController extends Controller
             $offers->whereDate('expire_date', '>',$request->expire_date);
         }
         if($request->filled('service')){
+
+
             $service = $request->service;
             $services = $request[$service];
-           if(in_array('qte',$services) && $this->checkRequest($request->$service["qte"])){
-            session()->put('qte',$request->qte );
+           if(array_key_exists('qte', $services) && $this->checkRequest($request->$service["qte"])){
+            session()->put('qte',$request->$service["qte"] );
            }
-           if(in_array('type_colis',$services) && $this->checkRequest($request->$service["type_colis"])){
-            session()->put('type_colis',$request->type_colis );
+           if(array_key_exists('type_colis', $services) && $this->checkRequest($request->$service["type_colis"])){
+            session()->put('type_colis',$request->$service["type_colis"]);
            }
-           if( $this->checkRequest($request->$service["longeur"])){
-            session()->put('longeur',$request->longeur );
+           if( array_key_exists('longeur', $services) &&$this->checkRequest($request->$service["longeur"])){
+            session()->put('longeur',$request->$service["longeur"] );
               $offers->where('longeur', '>',$request->$service["longeur"]);
            }
-           if($this->checkRequest($request->$service["hauteur"])){
-            session()->put('hauteur',$request->hauteur );
+           if(array_key_exists('hauteur', $services) &&$this->checkRequest($request->$service["hauteur"])){
+
+            session()->put('hauteur',$request->$service["hauteur"] );
               $offers->where('hauteur', '>',$request->$service["hauteur"]);
            }
-           if(in_array('type_gerbable',$services) && $this->checkRequest($request->$service["type_gerbable"])){
-               session()->put('type_gerbable',$request->type_gerbable );
+           if(array_key_exists('type_gerbable', $services) &&$this->checkRequest($request->$service["type_gerbable"])){
+               session()->put('type_gerbable',$request->$service["type_gerbable"] );
                $offers->where('type_gerbable', $request->$service["type_gerbable"]);
            }
-           if(in_array('type_emballage',$services) && $this->checkRequest($request->$service["type_emballage"])){
-                session()->put('type_emballage',$request->type_emballage );
+           if(array_key_exists('type_emballage', $services) && $this->checkRequest($request->$service["type_emballage"])){
+                session()->put('type_emballage',$request->$service["type_emballage"] );
                $offers->where('type_emballage', $request->$service["type_emballage"]);
            }
-           if($this->checkRequest($request->$service["poids"])){
-                session()->put('poids',$request->poids );
+           if(array_key_exists('poids', $services) &&$this->checkRequest($request->$service["poids"])){
+                session()->put('poids',$request->$service["poids"] );
                 $offers->where('poids', '>',$request->$service["poids"]);
             }
         }
@@ -73,9 +77,30 @@ class DashboardController extends Controller
         dd($request->all(),$e->getMessage());
     }
     }
+    private function querySearch(){
 
+    }
     private function checkRequest($value){
 
         return isset($value) && !empty($value);
+    }
+    public function reserveOffer($offer_id){
+        $reserve = new Reservation();
+        $reserve->offer_id = $offer_id;
+        $reserve->transitaire_id = auth()->guard('transitaire')->user()->id;
+        $reserve->poids = session()->get('poids');
+        $reserve->quantity = session()->get('qte');
+        $reserve->longueur = session()->get('longeur');
+        $reserve->hauteur = session()->get('hauteur');
+        $reserve->largeur = session()->get('largeur');
+        $reserve->type_colis = session()->get('type_colis');
+        $reserve->accepte_tmp = session()->get('accepte_tmp');
+        $reserve->humidity_rouge = session()->get('humidity_rouge');
+        $reserve->type_avoin = session()->get('type_avoin');
+        $reserve->status = "false";
+
+        $reserve->save();
+        return redirect()->route('transitaire.dashboard');
+
     }
 }

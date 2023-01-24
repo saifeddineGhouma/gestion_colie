@@ -27,5 +27,7 @@ Route::group([
     ], function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/search', [DashboardController::class, 'searchOffer'])->name('search.offer');
-   // Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
+    Route::get('/reserve/{offer_id}', [DashboardController::class, 'reserveOffer'])->name('reserve.offer');
+
+    // Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 });

@@ -18,10 +18,10 @@
             </a>
             <ul class="submenu ">
                 <li class="submenu-item ">
-                    <a href="{{route('admin.transiataire.company.index')}}">Company Transitaire</a>
+                    <a href="#">Company Transitaire</a>
                 </li>
                 <li class="submenu-item ">
-                    <a href="{{route('admin.transiataire.agent.index')}}">Transitaire</a>
+                    <a href="#">Transitaire</a>
                 </li>
 
 
