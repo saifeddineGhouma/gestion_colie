@@ -37,10 +37,10 @@
                                 <table class="table table-striped" id="table1">
                                     <thead>
                                         <tr>
-                                            <th>ID</th>
+
                                             <th>Num Vol</th>
                                             <th>Company</th>
-
+                                            <th>Airport</th>
                                             <th>
                                                 Action
                                             </th>
@@ -50,12 +50,17 @@
                                     <tbody>
                                     @foreach ($offers as $offer )
                                         <tr>
-                                            <td>{{$offer->id}}</td>
+
                                             <td>{{$offer->num_vol}}</td>
                                             <td>{{$offer->company_air->nom}}</td>
-                                           @if(!$offer->isReserved(auth()->guard('transitaire')->user()->id))
+                                             <td>{{$offer->airport_depart}} --  {{$offer->airport_arrive}}</td>
+                                            @if(!$offer->isReserved(auth()->guard('transitaire')->user()->id))
                                             <td>
                                                 <a href="{{route('transitaire.reserve.offer',$offer->id)}}" class="btn btn-danger">Reserve</a>
+                                            </td>
+                                            @else
+                                             <td>
+                                                <a href="#" class="btn btn-warning">en attend</a>
                                             </td>
                                             @endif
 
