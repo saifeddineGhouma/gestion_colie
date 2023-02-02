@@ -1,7 +1,4 @@
 @extends('part_transitaire.dashboard.layout.global')
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600&display=swap" rel="stylesheet">
 <style>
     @font-face {
         font-family: "Nunito-SemiBold";
@@ -10,7 +7,7 @@
 
     body {
         background: #F2F6FF;
-        font-family: "Nunito";
+        font-family: "Nunito-SemiBold";
     }
 
     .section-1 {
@@ -107,7 +104,7 @@
     }
 
     .logo {
-        width: 120px;
+        width: 150px;
         height: auto;
     }
 
@@ -117,7 +114,7 @@
     }
 
     .btn-reserver {
-        width: 100px;
+        width: 181px;
         height: 40px;
         background: #C20000;
         color: #fff;
@@ -134,7 +131,6 @@
     }
 
     main {
-		width: 100%;
         display: flex;
         flex-direction: row;
         align-content: center;
@@ -145,16 +141,16 @@
 
     .main-1 {
         height: auto;
-        width: 100%;
+        width: 900px;
         border-radius: 15px;
         background: #fff;
         padding: 0px 5px;
         margin-right: 50px;
-        padding: 20px;
+        padding: 20px 0px;
     }
 
     .main-2 {
-        width: 110%;
+        width: 371px;
         height: auto;
         background: #fff;
         display: flex;
@@ -166,9 +162,8 @@
 
     .main-2 h2 {
         color: #336A7D;
-        font-size: 18px;
-        padding-left: 10px;
-		padding-top: 25px;
+        font-size: 25px;
+        padding-left: 15px;
     }
 
     label {
@@ -178,7 +173,7 @@
     }
 
     input[type='range'] {
-        width: 280px;
+        width: 350px;
     }
 
     input[type='range']::-ms-thumb {
@@ -200,13 +195,13 @@
     }
 
     .prix {
-        font-size: 13px;
+        font-size: 20px;
         font-weight: bold;
         margin: 0px;
     }
 
     .carrier {
-        font-size: 15px;
+        font-size: 18px;
         font-weight: bold;
     }
 
@@ -215,8 +210,7 @@
     }
 
     .label {
-        font-size: 15px;
-		margin-left: 10px;
+        font-size: 20px;
     }
 
     .aller {
@@ -254,8 +248,8 @@
                         <!-- SECTION 1 PART 2  -->
                         <div class="section-1-2">
                             <div class="date-and-time">
-                                <p class="date">{{$offer->day_depart}}</p>
-                                <p class="time">{{ date('h:i', strtotime($offer->expire_date)) }}</p>
+                                <p class="date">LUN 08.06</p>
+                                <p class="time">9:25</p>
                                 <p class="fra">{{$offer->airport_depart}}</p>
                             </div>
 
@@ -265,17 +259,16 @@
                             </div>
 
                             <div class="date-and-time">
-                                <p class="date">{{$offer->expire_date}}</p>
-                                <p class="time">{{ date('h:i', strtotime($offer->expire_date)) }}
-                                </p>
-                                <p class="fra">{{$offer->airport_arrive}}</p>
+                                <p class="date">MER 08.06</p>
+                                <p class="time">9:25</p>
+                                <p class="fra">FRA</p>
                             </div>
                         </div>
 
                         <div class="section-1-3">
-                            <p class="prix">{{$offer->tarif_en_kg}} TND /kg</p>
+                            <p class="prix">£{{$offer->tarif_en_kg}} /kg</p>
                             <p class="carrier">{{$offer->airport_arrive	}}</p>
-                            <a href="{{route('transitaire.reservation.show',$offer)}}">
+                            <a href="{{route('transitaire.reserve.offer',$offer->id)}}">
                                 <button class="btn-reserver">Réserver</button>
                             </a>
                         </div>
@@ -293,7 +286,7 @@
 
 
             </div>
-           <div class="col-md-4">
+          {{-- <div class="col-md-4">
 
                 <div class="main-2">
                     <div>
@@ -306,18 +299,18 @@
 
                     <form>
                         <div>
-                            <input type="checkbox" name="escale" value="direct"><label class="label"> Direct</label>
-                            <p class="price">Dés 80 TND</p>
+                            <input type="checkbox" name="escale" value="direct"><label class="label">Direct</label>
+                            <p class="price">Dés 80€</p>
                         </div>
 
                         <div>
-                            <input type="checkbox" name="escale" value="1-escale"><label class="label"> 1 escale</label>
-                            <p class="price">Dés 149 TND</p>
+                            <input type="checkbox" name="escale" value="1-escale"><label class="label">1 escale</label>
+                            <p class="price">Dés 149€</p>
                         </div>
 
                         <div>
-                            <input type="checkbox" name="escale" value="direct"><label class="label"> 2+Escales</label>
-                            <p class="price">Dés 374 TND</p>
+                            <input type="checkbox" name="escale" value="direct"><label class="label">2+Escales</label>
+                            <p class="price">Dés 374€</p>
                         </div>
 
                         <div>
@@ -359,7 +352,7 @@
                 </div>
 
 
-            </div>
+            </div>  --}}
           </div>
             </main>
 

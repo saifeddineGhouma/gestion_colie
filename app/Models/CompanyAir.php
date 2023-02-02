@@ -13,4 +13,13 @@ class CompanyAir extends Model
     {
         return $this->hasMany(Offer::class);
     }
+
+    public function getImage()
+    {
+        if($this->id % 2 == 0)
+          return asset('assets/images/company/flyemirates.PNG') ;
+        return asset('assets/images/company/tunisair.PNG') ;
+
+    }
+
 }

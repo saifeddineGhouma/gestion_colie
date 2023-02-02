@@ -85,6 +85,14 @@ class DashboardController extends Controller
         return isset($value) && !empty($value);
     }
     public function reserveOffer($offer_id){
+        $isCheck = Reservation::where('offer_id', $offer_id)
+            ->where('transitaire_id', auth()->guard('transitaire')->user()->id)
+            ->first();
+        if(!empty($isCheck)){
+           // return redirect()->route('transitaire.reservation.show',$isCheck);
+            return redirect()->route('transitaire.reservation.index');
+        }
+
         $reserve = new Reservation();
         $reserve->offer_id = $offer_id;
         $reserve->transitaire_id = auth()->guard('transitaire')->user()->id;
@@ -97,10 +105,23 @@ class DashboardController extends Controller
         $reserve->accepte_tmp = session()->get('accepte_tmp');
         $reserve->humidity_rouge = session()->get('humidity_rouge');
         $reserve->type_avoin = session()->get('type_avoin');
-        $reserve->status = "false";
-
+        $reserve->status = "en_attend";
         $reserve->save();
-        return redirect()->route('transitaire.dashboard');
+        return redirect()->route('transitaire.reservation.index');
+
+    }
+
+    public function recap(Offer $offer)
+    {
+        return  view('part_transitaire.dashboard.reservations.show',compact('offer'));
+    }
+
+    public function reservations()
+    {
+       // $company_id = auth()->guard('transitaire')->user()->company_id;
+        $reservations = auth()->guard('transitaire')->user()->reservations;
+
+        return  view('part_transitaire.dashboard.reservations.index',compact('reservations'));
 
     }
 }

@@ -14,4 +14,8 @@ class Transitaire extends Authenticatable
     {
         return $this->belongsTo(CompanyTransitaire::class);
     }
+    public function reservations()
+    {
+        return $this->hasMany(Reservation::class);
+    }
 }

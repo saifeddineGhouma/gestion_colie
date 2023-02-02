@@ -11,6 +11,16 @@
         margin: 50px;
         background: #F2F6FF;
     }
+	
+	.title {
+		font-size: 21px;
+		color: rgb(26, 26, 26);
+		margin: 20px 0px;
+	}
+	
+	input {
+		border: 1px solid rgb(189, 189, 189);	
+	}
 
     form {
         background: #fff;
@@ -28,6 +38,7 @@
     .form-2 {
         display: inline;
         margin-bottom: 30px;
+		flex-wrap: wrap;
     }
 
     .form-3 {
@@ -48,20 +59,22 @@
         width: 350px;
         height: 31px;
         border-radius: 3px;
-        border: 1px solid #707070;
+        border: 1px solid #cfcfcf;
         margin-top: 10px;
     }
 
     .small-input {
-        width: 107px;
+        max-width: 80px;
         height: 31px;
         border-radius: 3px;
-        border: 1px solid #707070;
+        border: 1px solid #cfcfcf;
         margin-top: 10px;
+		margin-right: 0px;
     }
 
     .radio-group {
         margin-top: 30px;
+		padding-top: 10px;
     }
 
     .service-btn {
@@ -69,7 +82,7 @@
         color: #000;
         font-size: 15px;
         height: 49px;
-        border: 1px solid #707070;
+        border: 1px solid #cfcfcf;
         cursor: pointer;
         border-radius: 3px;
         padding: 0px 40px;
@@ -86,7 +99,7 @@
         width: 254px;
         height: 30px;
         background-color: #fff;
-        border: 1px solid #707070;
+        border: 1px solid #cfcfcf;
         border-radius: 3px;
         margin-top: 20px;
         margin-bottom: 20px;
@@ -113,7 +126,13 @@
 
     label {
         font-weight: bold;
+		color: #000000;
+		font-size: 12px;
     }
+	
+	.emballage-dang {
+		margin-top: 15px;	
+	}
 
 
     /* -------------------------------------- */
@@ -132,20 +151,22 @@
 
 @extends('part_transitaire.dashboard.layout.global')
 @section('contenu')
-<div class="page-heading">
+<div class="page-heading" style="margin-top: -60px">
     <div class="page-title">
         <div class="row">
             <div class="col-12 col-md-6 order-md-1 order-last">
-                <h3>Vertical Layout with Navbar</h3>
-                <p class="text-subtitle text-muted">Navbar will appear on the top of the page.</p>
+					<h3 class="title" style="margin-left: 50px"><i style="margin-right: 10px; color: rgb(189, 189, 189);" class="fa-solid fa-magnifying-glass"></i> Rechercher meilleur offre</h3>
+               
             </div>
             <div class="col-12 col-md-6 order-md-2 order-first">
+				<!--
                 <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
                         <li class="breadcrumb-item active" aria-current="page">Layout Vertical Navbar</li>
                     </ol>
                 </nav>
+-->
             </div>
         </div>
     </div>
@@ -158,25 +179,27 @@
 
                     <div class="card-content">
                         <div class="card-body">
+							
                             <form method="get" action="{{route('transitaire.search.offer')}}">
                                 @csrf
-                                <h2>Entrez vos expéditions détails</h2>
+                                <h2 style="color: #000; font-size: 15px;">Entrez vos expéditions détails</h2>
                                 <input type="hidden" name="service" id="service" />
+								
                                 <!-- FORM 1 ---------------------------------->
-                                <div class="form-1">
-                                    <div>
+                                <div class="form-1" style="width: 100%; display: flex; flex-direction: row; justify-content: flex-start;">
+                                    <div style="margin-right: 50px">
                                         <br><label for="aeroport-de-depart">Aéroport de départ</label><br>
-                                        <input class="large-input" id="aeroport-de-depart" name="airport_depart" type="text">
+                                        <input class="large-input" id="aeroport-de-depart" name="airport_depart" type="text" style="width:120%; border: 1px solid #cfcfcf">
                                     </div>
 
-                                    <div>
+                                    <div style="margin-right: 50px">
                                         <br><label for="aeroport-de-destination">Aéroport de destination</label><br>
-                                        <input class="large-input" id="aeroport-de-destination" name="airport_arrive"  type="text">
+                                        <input class="large-input" id="aeroport-de-destination" name="airport_arrive"  type="text" style="width:120%;">
                                     </div>
 
                                     <div>
                                         <br><label for="expedition-date">Expedition date</label><br>
-                                        <input class="large-input" id="expedition-date" name="expire_date"  type="date">
+                                        <input class="large-input" id="expedition-date" name="expire_date"  type="date" style="width:160%;">
                                     </div>
                                 </div>
 
@@ -193,18 +216,18 @@
                                     </div>
                                 </div>
 
-                                <!-- EXPEDITION STANDARD -------------------------------------------------->
+                                <!-- EXPEDITION STANDARD ---------------------------------------------------->
                                 <div id="expedition-standard">
                                     <div class="form-3">
                                         <div>
                                             <br><label for="quantite">Quantité</label><br>
-                                            <input class="small-input" id="quantité" name="expedition[qte]" type="number">
+                                            <input class="small-input" id="quantite" name="expedition[qte]" type="number">
                                         </div>
 
-                                        <div class="radio-group">
-                                            <label for="colis"><input id="colis" name="expedition[type_colis]" type="radio" value="colis" name="type-emballage">
+                                        <div class="radio-group emballage">
+                                            <label style="font-weight: normal; padding-bottom:10px" for="colis"><input id="colis" name="expedition[type_colis]" type="radio" value="colis" name="type-emballage">
                                                 Colis</label><br>
-                                            <label for="palette"><input id="palette" name="expedition[type_colis]" type="radio" value="palette" name="type-emballage">
+                                            <label style="font-weight: normal" for="palette"><input id="palette" name="expedition[type_colis]" type="radio" value="palette" name="type-emballage">
                                                 Palette</label><br>
                                         </div>
 
@@ -224,27 +247,27 @@
                                         </div>
 
                                         <div class="radio-group">
-                                            <label for="gerbable"><input id="gerbable" name="expedition[type_gerbable]" type="radio" value="gerbable" name="gerbable">
+                                            <label style="font-weight: normal; padding-bottom:10px" for="gerbable"><input id="gerbable" name="expedition[type_gerbable]" type="radio" value="gerbable" name="gerbable">
                                                 Gerbable</label><br>
-                                            <label for="non-gerbable"><input id="non-gerbable" name="expedition[type_gerbable]" type="radio" value="non-gerbable"
+                                            <label style="font-weight: normal" for="non-gerbable"><input id="non-gerbable" name="expedition[type_gerbable]" type="radio" value="non-gerbable"
                                                     name="gerbable"> Non gerbable</label><br>
                                         </div>
 
                                         <div>
                                             <br><label>Type de poids</label><br>
-                                            <select name="expedition[type_poids]">
-                                                <option selected value="">select poid</option>
-                                                <option>Option 1</option>
-                                                <option>Option 2</option>
-                                                <option>Option 3</option>
+                                            <select style="border: 1px solid #cfcfcf; color:#cfcfcf " name="expedition[type_poids]">
+                                                <option selected value=""></option>
+                                                <option style="color: #000">Option 1</option>
+                                                <option style="color: #000">Option 2</option>
+                                                <option style="color: #000">Option 3</option>
                                             </select>
                                         </div>
 
-                                        <div class="radio-group">
+                                        <div class="radio-group emballage-dang">
                                             <label>Emballage</label><br>
-                                            <label for="dangereux"><input id="dangereux" name="expedition[type_emballage]" type="radio" value="dangereux"
-                                                  >Dangereux</label><br>
-                                            <label for="non-dangereux"><input id="non-dangereux"
+                                            <label style="font-weight: normal; padding-bottom:10px" for="dangereux"><input id="dangereux" name="expedition[type_emballage]" type="radio" value="dangereux"
+                                                  > Dangereux</label><br>
+                                            <label style="font-weight: normal" for="non-dangereux"><input id="non-dangereux"
                                                 name="expedition[type_emballage]"
                                                 type="radio" value="non-dangereux"
                                                     > Non dangereux</label><br>
@@ -266,16 +289,16 @@
 
                                 <!-- MARCHANDISE SOUS TEMPERATURE CONTROLEE -------------------------------------------->
                                 <div id="marchandise-stc">
-                                    <div class="form-3">
+                                    <div class="form-3" style="flex-wrap: wrap">
                                         <div>
                                             <br><label for="quantite">Quantité</label><br>
-                                            <input class="small-input" id="quantité" name="marchandise[qte]" type="number">
+                                            <input class="small-input" id="quantite" name="marchandise[qte]" type="number">
                                         </div>
 
                                         <div class="radio-group">
-                                            <label for="colis"><input id="colis" type="radio" value="colis" name="marchandise[type_colis]">
+                                            <label for="colis" style="font-weight: normal; margin-bottom: 10px;"><input id="colis" type="radio" value="colis" name="marchandise[type_colis]">
                                                 Colis</label><br>
-                                            <label for="palette"><input id="palette" type="radio" value="palette"  name="marchandise[type_colis]">
+                                            <label style="font-weight: normal; margin-bottom: 10px;" for="palette"><input id="palette" type="radio" value="palette"  name="marchandise[type_colis]">
                                                 Palette</label><br>
                                         </div>
 
@@ -285,7 +308,7 @@
                                         </div>
 
                                         <div>
-                                            <br><label for="acceptable-temperature">Acceptable Temperature</label><br>
+                                            <br><label for="acceptable-temperature">Temperature</label><br>
                                             <input class="small-input" id="acceptable-temperature" name="marchandise[accepte_tmp]" type="number">
                                         </div>
 
@@ -310,37 +333,42 @@
                                         </div>
 
                                         <div class="radio-group">
-                                            <label for="gerbable"><input id="gerbable" type="radio" value="gerbable" name="marchandise[type_gerbable]">
+                                            <label style="font-weight: normal ;margin-bottom: 10px;" for="gerbable"><input id="gerbable" type="radio" value="gerbable" name="marchandise[type_gerbable]">
                                                 Gerbable</label><br>
-                                            <label for="non-gerbable"><input id="non-gerbable" type="radio" value="non-gerbable"
-                                                name="marchandise[type_gerbable]"> Non gerbable</label><br>
+                                            <label style="font-weight: normal" for="non-gerbable"><input id="non-gerbable" type="radio" value="non-gerbable"
+                                                name="marchandise[type_gerbable]"> Non gerbable</label>
                                         </div>
-
-                                        <div>
+										<br>
+										
+                                       
+                                    </div>
+									
+									<div style="display: flex; flex-direction: row">
+										 <div>
                                             <br><label>Type de poids</label><br>
-                                            <select name="marchandise[type_poids]">
-                                                <option selected value="">select poids ?</option>
-                                                <option>Option 1</option>
-                                                <option>Option 2</option>
-                                                <option>Option 3</option>
+                                            <select style="border: 1px solid #cfcfcf; color:#cfcfcf " name="marchandise[type_poids]">
+                                                <option selected value=""></option>
+                                                <option style="color: #000">Option 1</option>
+                                                <option style="color: #000">Option 2</option>
+                                                <option style="color: #000">Option 3</option>
                                             </select>
                                         </div>
 
-                                        <div class="radio-group">
-                                            <label>Emballage</label><br>
-                                            <label for="dangereux"><input id="dangereux" type="radio" value="dangereux"
-                                                name="marchandise[type_emballage]">Dangereux</label><br>
-                                            <label for="non-dangereux"><input id="non-dangereux" type="radio" value="non-dangereux"
+                                        <div style="margin-left: 50px; margin-top: 20px" class="radio-group">
+                                            <label style="margin-top: -5px">Emballage</label><br>
+                                            <label style="font-weight: normal; margin-bottom: 10px;" for="dangereux"><input id="dangereux" type="radio" value="dangereux"
+                                                name="marchandise[type_emballage]"> Dangereux</label><br>
+                                            <label style="font-weight: normal" for="non-dangereux"><input id="non-dangereux" type="radio" value="non-dangereux"
                                                 name="marchandise[type_emballage]"> Non dangereux</label><br>
                                         </div>
 
-                                        <div>
+                                        <div style="margin-left: 50px;">
                                             <br><label for="autres-instructions">Autres instructions</label><br>
                                             <input class="small-input autres-instructions" id="autres-instructions" type="text">
                                         </div>
-                                    </div>
+									</div>
 
-                                    <div class="form-4">
+                                    <div style="margin-top: 30px;" class="form-4">
                                         <a class="lien-nouvel-envoi" href="#"><i class="fa-solid fa-plus"></i> Créer un nouvel envoi</a><br>
                                         <button class="download-btn"><i class="fa-solid fa-download"></i> Merci de télécharger la
                                             facture</button>
@@ -359,9 +387,9 @@
                                         </div>
 
                                         <div class="radio-group">
-                                            <label for="colis"><input id="colis" name="cargo[type_colis]"  type="radio" value="colis">
+                                            <label style="font-weight: normal; margin-bottom: 10px" for="colis"><input id="colis" name="cargo[type_colis]"  type="radio" value="colis">
                                                 Colis</label><br>
-                                            <label for="palette"><input  name="cargo[type_colis]" id="palette" type="radio" value="palette">
+                                            <label style="font-weight: normal" for="palette"><input  name="cargo[type_colis]" id="palette" type="radio" value="palette">
                                                 Palette</label><br>
                                         </div>
 
@@ -386,28 +414,32 @@
                                         </div>
 
                                         <div class="radio-group">
-                                            <label for="gerbable"><input id="gerbable" name="cargo[gerbable]"  type="radio"
+                                            <label style="font-weight: normal; margin-bottom: 10px"for="gerbable"><input id="gerbable" name="cargo[gerbable]"  type="radio"
                                                 value="gerbable" >
                                                 Gerbable</label><br>
-                                            <label for="non-gerbable"><input id="non-gerbable" name="cargo[gerbable]"  type="radio" value="non-gerbable"
+                                            <label style="font-weight: normal;" for="non-gerbable"><input id="non-gerbable" name="cargo[gerbable]"  type="radio" value="non-gerbable"
                                                     > Non gerbable</label><br>
                                         </div><br>
 
                                         <div>
                                             <br><label>Type de poids</label><br>
-                                            <select name="cargo[type_poids]" >
+                                            <select style="border: 1px solid #cfcfcf; color:#cfcfcf" name="cargo[type_poids]" >
                                                 <option selected></option>
-                                                <option>Option 1</option>
-                                                <option>Option 2</option>
-                                                <option>Option 3</option>
+                                                <option style="color: #000">Option 1</option>
+                                                <option style="color: #000">Option 2</option>
+                                                <option style="color: #000">Option 3</option>
                                             </select>
                                         </div>
 
-                                        <div class="radio-group">
-                                            <label>Emballage</label><br>
-                                            <label for="dangereux"><input id="dangereux" name="cargo[type_emb]"  type="radio" value="dangereux"
-                                                    name="danger-emballage">Dangereux</label><br>
-                                            <label for="non-dangereux"><input id="non-dangereux" name="cargo[type_emb]"   type="radio" value="non-dangereux"
+                                      
+                                    </div>
+									
+									<div style="display: flex; flex-direction: row" id="sep">
+									  <div style="margin-top: 12px; margin-right: 30px;" class="radio-group">
+                                            <label >Emballage</label><br>
+                                            <label style="font-weight: normal; margin-bottom: 10px" for="dangereux"><input id="dangereux" name="cargo[type_emb]"  type="radio" value="dangereux"
+                                                    name="danger-emballage"> Dangereux</label><br>
+                                            <label  style="font-weight: normal;" for="non-dangereux"><input id="non-dangereux" name="cargo[type_emb]"   type="radio" value="non-dangereux"
                                                     name="danger-emballage"> Non dangereux</label><br>
                                         </div>
 
@@ -415,9 +447,9 @@
                                             <br><label for="type-avion">Type d'avion</label><br>
                                             <input class="small-input" name="cargo[type_avoin]"   id="type-avion" type="number">
                                         </div>
-                                    </div>
+									</div>
 
-                                    <div class="form-4">
+                                    <div style="margin-top: 40px" class="form-4">
                                         <a class="lien-nouvel-envoi" href="#"><i class="fa-solid fa-plus"></i> Créer un nouvel envoi</a><br>
                                         <button class="download-btn"><i class="fa-solid fa-download"></i> Merci de télécharger la
                                             facture</button>
